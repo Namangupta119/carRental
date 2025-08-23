@@ -1,4 +1,5 @@
 import React from 'react'
+import { assets } from '../assets/assets';
 
 const Banner = () => {
   return (
@@ -19,4 +20,4 @@ const Banner = () => {
   )
 }
 
-export default Banner
+export default Banner;
