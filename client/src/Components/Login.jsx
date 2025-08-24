@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Login = () => {
+const Login = ({setShowLogin}) => {
 
     const [state, setState] = React.useState("login");
     const [name, setName] = React.useState("");
