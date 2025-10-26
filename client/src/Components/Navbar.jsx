@@ -3,6 +3,7 @@ import { assets, menuLinks } from '../assets/assets'
 import {Link, useLocation, useNavigate} from 'react-router-dom'
 import { useAppContext } from '../context/AppContext'
 import {motion} from "motion/react";
+import toast from 'react-hot-toast';
 
 const Navbar = ({}) => {
 

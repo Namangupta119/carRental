@@ -152,6 +152,8 @@ const CarDetails = () => {
               className="border border-borderColor px-3 py-2 rounded-lg"
               required
               id="return-date"
+              
+              min={new Date().toISOString().split("T")[0]}
             />
           </div>
 

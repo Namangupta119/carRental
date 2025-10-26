@@ -22,6 +22,7 @@ export const AppProvider = ({children}) => {
     const [returnDate, setReturnDate] = useState('');
     const [cars, setCars] = useState([]);
 
+
     //function to check if user is logged in
     const fetchUser = async ()=>{
         try {

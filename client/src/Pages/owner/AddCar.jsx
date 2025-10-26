@@ -3,8 +3,7 @@ import Title from "../../Components/owner/Title";
 import { assets } from "../../assets/assets";
 import { useAppContext } from "../../context/AppContext";
 import toast from "react-hot-toast";
-
-//8:16
+import { useNavigate } from "react-router-dom";
 
 const AddCar = () => {
   const { axios, currency } = useAppContext();
@@ -23,6 +22,7 @@ const AddCar = () => {
     location: "",
     description: "",
   });
+
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
