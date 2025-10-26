@@ -1,14 +1,36 @@
 import React, { useEffect, useState } from "react";
-import { dummyMyBookingsData } from "../../assets/assets";
 import Title from "../../Components/owner/Title";
+import { useAppContext } from "../../context/AppContext";
+import toast from "react-hot-toast";
 
 const ManageBooking = () => {
-  const currency = import.meta.env.VITE_CURRENCY;
+
+  const {currency, axios} = useAppContext();
 
   const [bookings, setBookings] = useState([]);
 
+
   const fetchOwnerBookings = async () => {
-    setBookings(dummyMyBookingsData);
+    try {
+      const {data} = await axios.get('/api/bookings/owner')
+      
+      data.success ? setBookings(data.bookings) : toast.error(data.message);
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  const changeBookingStatus = async (bookingId, status) => {
+    try {
+      const {data} = await axios.post('/api/bookings/change-status', {bookingId, status})
+      if(data.success){
+        toast.success(data.message);
+        fetchOwnerBookings();
+      }
+      else toast.error(data.message);
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   useEffect(() => {
@@ -64,11 +86,12 @@ const ManageBooking = () => {
                   </span>
                 </td>
 
-                {/* <td className="p-3">
+                {/*<td className="p-3">
                   {booking.status === 'pending' ? (
                     <select
                       value={booking.status}
                       className="px-2 py-1.5 mt-1 text-grey-500 border border-borderColor rounded-md outline-none"
+                      onChange={e=> changeBookingStatus(booking._id, e.target.value)}
                     >
                       <option value="pending">Pending</option>
                       <option value="cancelled">Canelled</option>
@@ -85,20 +108,13 @@ const ManageBooking = () => {
                       {booking.status}
                     </span>
                   )}
-                </td> */}
+                </td>*/}
 
                 <td className="p-3">
   {booking.status === "pending" ? (
     <select
       value={booking.status}
-      onChange={(e) => {
-        const updatedBookings = [...bookings];
-        updatedBookings[index] = {
-          ...updatedBookings[index],
-          status: e.target.value,
-        };
-        setBookings(updatedBookings);
-      }}
+      onChange={e=> changeBookingStatus(booking._id, e.target.value)}
       className="px-2 py-1.5 mt-1 text-grey-500 border border-borderColor rounded-md outline-none"
     >
       <option value="pending">Pending</option>
@@ -115,7 +131,7 @@ const ManageBooking = () => {
     >
       {booking.status}
     </span>
-  )}
+  )} 
 </td>
 
 

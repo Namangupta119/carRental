@@ -1,6 +1,6 @@
 import React from 'react'
 import { assets } from '../assets/assets'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 const CarCards = ({ car }) => {
   const currency = import.meta.env.VITE_CURRENCY
@@ -21,13 +21,13 @@ const CarCards = ({ car }) => {
           className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-105' 
         />
 
-        {car.isAvailable && (
+        {car.isAvaliable && (
           <p className='absolute top-4 left-4 bg-primary/90 text-white text-xs px-2.5 py-1 rounded-full'>
             Available Now
           </p>
         )}
 
-        <div className='absolute top-4 right-4 bg-primary/90 text-white text-xs px-2.5 py-1 rounded-full'>
+        <div className='absolute bottom-4 right-4 bg-black/90 text-white text-xs px-2.5 py-1 rounded'>
           <span className='font-semibold'>{currency}{car.pricePerDay}</span>
           <span className='text-sm text-white/80'> / day</span>
         </div>
