@@ -5,6 +5,7 @@ import CarCards from "../Components/CarCards";
 import { useSearchParams } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
 import { motion } from "motion/react";
+import toast from "react-hot-toast";
 
 const Cars = () => {
   const [input, setInput] = useState('');
@@ -58,7 +59,7 @@ const Cars = () => {
     if(data.success){
       setFilteredCars(data.availableCars);
       if(data.availableCars.length === 0){
-        toast('No car available');
+        toast.error('No car available');
       }
       return null;
     }
